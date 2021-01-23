@@ -1,6 +1,7 @@
 package com.pageobjects;
 
 import com.general.Utils;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,6 +18,7 @@ public class HomePage extends Utils{
         this.driver = driver;
     }
 
+    @Step("Open MyContactForm website")
     public HomePage openWebsite(String url) throws IOException {
 
         driver.get(url);
@@ -26,6 +28,7 @@ public class HomePage extends Utils{
 
     }
 
+    @Step("Open SampleForms Link")
     public SampleFormsPage openSampleForms(){
         driver.findElement(By.xpath(SAMPLE_FORMS)).click();
         waitForElement(driver, SAMPLE_FORM_HEADER);
