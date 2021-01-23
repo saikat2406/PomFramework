@@ -3,6 +3,7 @@ package com.tests;
 import com.engine.DriverManager;
 import com.pageobjects.HomePage;
 import com.general.Utils;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,7 +11,8 @@ import java.io.IOException;
 
 public class MyContactForm extends DriverManager {
 
-    @Test
+    @Description("MyContactForm : Testing Invalid Login")
+    @Test(description = "Tests Invalid Login")
     public void mainTest() throws IOException {
 
         HomePage homePage = new HomePage(getDriver());
