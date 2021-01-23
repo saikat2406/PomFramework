@@ -1,11 +1,7 @@
 #ignore .idea
-.idea
-build
-build/reports/tests
-target
-.gitignore
-target
-target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
-target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
-createdFiles.lst
-inputFiles.lst
+**/*.idea
+**/*build/
+**/*target/
+**/*.gitignore
+**/*.allure
+allure-results
