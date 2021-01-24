@@ -5,3 +5,4 @@
 **/*.gitignore
 **/*.allure
 allure-results
+**/*.debug.log
