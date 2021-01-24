@@ -5,27 +5,35 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class SampleFormsPage extends Utils {
+import java.io.IOException;
+
+public class HomePage extends Utils{
 
     public WebDriver driver;
 
-    private String USERNAME_TEXTBOX = "//input[@id='user' and @type='text']";
-    private String PASSWORD_TEXTBOX = "//input[@id='pass' and @type='password']";
-    private String LOGIN_BUTTON = "//input[@value='Login']";
+    private String SAMPLE_FORMS = "//a[text()='Sample Forms']";
+    private String SAMPLE_FORM_HEADER = "//h1[text()='Sample Email and Contact Forms']";
 
-    public SampleFormsPage(WebDriver driver){
+    public HomePage(WebDriver driver){
         this.driver = driver;
     }
 
-    @Step("Login with Invalid Credentials")
-    public void login(String userid, String password){
+    @Step("Open MyContactForm Website")
+    public HomePage openWebsite(String url) throws IOException {
 
-        waitForElement(driver, USERNAME_TEXTBOX);
-        driver.findElement(By.xpath(USERNAME_TEXTBOX)).sendKeys(userid);
-        driver.findElement(By.xpath(PASSWORD_TEXTBOX)).sendKeys(password);
-        driver.findElement(By.xpath(LOGIN_BUTTON)).click();
-        rememberTheValue("name3", "Ujaan");
+        driver.get(url);
+        waitForElement(driver, SAMPLE_FORMS);
+        rememberTheValue("name1", "Saikat");
+        return new HomePage(driver);
 
+    }
+
+    @Step("Open SampleForm Page")
+    public SampleFormsPage openSampleForms(){
+        driver.findElement(By.xpath(SAMPLE_FORMS)).click();
+        waitForElement(driver, SAMPLE_FORM_HEADER);
+        rememberTheValue("name2", "Sohini");
+        return new SampleFormsPage(driver);
     }
 
 }

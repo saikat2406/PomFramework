@@ -1,6 +1,7 @@
 package com.pageobjects;
 
 import com.general.Utils;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -16,6 +17,7 @@ public class SampleFormsPage extends Utils {
         this.driver = driver;
     }
 
+    @Step("Perform Login With Invalid Details")
     public void login(String userid, String password){
 
         waitForElement(driver, USERNAME_TEXTBOX);
