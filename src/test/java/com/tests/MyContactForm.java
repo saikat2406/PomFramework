@@ -17,7 +17,7 @@ public class MyContactForm extends DriverManager {
 
         HomePage homePage = new HomePage(getDriver());
         homePage
-                .openWebsite(Utils.getData("sampleforms_url"))
+                .openWebsite(Utils.getData("sampleforms_url1"))
                 .openSampleForms()
                 .login(Utils.getData("userid"), Utils.getData("password"));
 
