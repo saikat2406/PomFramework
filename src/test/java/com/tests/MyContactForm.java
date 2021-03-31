@@ -1,7 +1,7 @@
 package com.tests;
 
 import com.engine.DriverManager;
-import com.pageobjects.HomePage;
+import com.dictionary.pageobjects.HomePage;
 import com.general.Utils;
 import io.qameta.allure.Description;
 import org.testng.Assert;

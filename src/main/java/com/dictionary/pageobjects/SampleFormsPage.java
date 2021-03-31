@@ -1,4 +1,4 @@
-package com.pageobjects;
+package com.dictionary.pageobjects;
 
 import com.general.Utils;
 import io.qameta.allure.Step;
