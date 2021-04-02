@@ -1,33 +1,71 @@
 package com.tests;
 
+import com.dictionary.basePageObjects.SampleFormsPage;
+import com.dictionary.basePageObjects.HomePage;
+import static com.general.Utils.*;
 import com.engine.DriverManager;
-import com.dictionary.pageobjects.HomePage;
-import com.general.Utils;
 import io.qameta.allure.Description;
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
 public class MyContactForm extends DriverManager {
 
-    @Description("MyContactForm : Testing Invalid Login")
-    @Test(description = "Tests Invalid Login")
-    public void mainTest() throws IOException {
+    @Description("Setting Up Prerequisites")
+    @BeforeTest(description = "Setup Functionality")
+    public void setup() throws IOException {
+        setTestEnvironment();
+    }
+
+    @DataProvider
+    public Object[][] getUseridPassword() throws IOException {
+        return new Object[][]{
+                {getData("userid1"), getData("password1")},
+                {getData("userid2"), getData("password2")},
+                {getData("userid3"), getData("password3")},
+        };
+    }
+
+    @Description("MyContactForm : Testing First Invalid Login")
+    @Test(description = "Tests First Invalid Login", dataProvider = "getUseridPassword")
+    public void firstTest(String userid, String password) throws IOException {
 
         HomePage homePage = new HomePage(getDriver());
         homePage
-                .openWebsite(Utils.getData("sampleforms_url"))
+                .openWebsite(getData("sampleforms_url"))
+                .getNavigationLinks()
+                .openSampleForms();
+        SampleFormsPage sampleFormsPage = new SampleFormsPage(getDriver());
+        sampleFormsPage
+                .getLoginModule()
+                .login(userid, password);
+
+        Assert.assertEquals(whatIsTheValue("Login Error"), getData("loginerrormessage"));
+
+    }
+
+    @Description("MyContactForm : Testing Second Invalid Login")
+    @Test(description = "Tests Second Invalid Login", dataProvider = "getUseridPassword")
+    public void secondTest(String userid, String password) throws IOException {
+
+        HomePage homePage = new HomePage(getDriver());
+        homePage
+                .openWebsite(getData("sampleforms_url"))
+                .getNavigationLinks()
                 .openSampleForms()
-                .login(Utils.getData("userid"), Utils.getData("password"));
+                .getLoginModule()
+                .login(userid, password);
 
-        System.out.println(Utils.whatIsTheValue("name1"));
-        System.out.println(Utils.whatIsTheValue("name2"));
-        System.out.println(Utils.whatIsTheValue("name3"));
+        Assert.assertEquals(whatIsTheValue("Login Error"), getData("loginerrormessage"));
 
-        Assert.assertEquals(Utils.whatIsTheValue("name1"), "Saikat");
-        Assert.assertEquals(Utils.whatIsTheValue("name2"), "Sohini");
-        Assert.assertEquals(Utils.whatIsTheValue("name3"), "Ujaan");
+    }
+
+    @Description("Closing Activities")
+    @AfterTest(description = "Teardown Functionality")
+    public void tearDown(){
+
+        quitTest();
 
     }
 
