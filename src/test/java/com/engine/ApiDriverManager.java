@@ -1,11 +1,12 @@
 package com.engine;
 
-import static com.general.Utils.environmentMap;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
-public class DriverManager {
+import static com.general.Utils.environmentMap;
+
+public class ApiDriverManager {
 
     WebDriver driver=null;
 

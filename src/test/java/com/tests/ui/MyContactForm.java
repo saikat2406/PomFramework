@@ -1,4 +1,4 @@
-package com.tests;
+package com.tests.ui;
 
 import com.dictionary.basePageObjects.SampleFormsPage;
 import com.dictionary.basePageObjects.HomePage;
