@@ -2,6 +2,7 @@ package com.apiPojoToJsonMapping;
 
 import com.apiPojo.TestMapsApiPojo.AddPlaceBase;
 import com.apiPojo.TestMapsApiPojo.AddPlaceLocation;
+import io.qameta.allure.Step;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import static com.general.Utils.getData;
 
 public class PojoToJsonMapping {
 
+    @Step("Converting Pojo to Json Payload")
     public static Object addPlacePojoToJson() throws IOException {
 
         AddPlaceLocation addPlaceLocation = new AddPlaceLocation();
