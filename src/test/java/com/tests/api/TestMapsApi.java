@@ -1,13 +1,11 @@
 package com.tests.api;
 
-import com.apiDictionary.MapsAddPlace;
+import com.apiDictionary.MapsApi;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
 import java.io.IOException;
 import static io.restassured.RestAssured.*;
 import static com.general.Utils.*;
@@ -30,8 +28,8 @@ public class TestMapsApi {
     public void addPlace() throws IOException {
         basePath=getData("maps.addplace.basepath");
 
-        MapsAddPlace mapsAddPlace = new MapsAddPlace();
-        mapsAddPlace.addPlaceToMaps();
+        MapsApi mapsApi = new MapsApi();
+        mapsApi.addPlaceToMaps();
 
         Assert.assertEquals(whatIsTheValue("Status"), getData("maps.addplace.statusvalue"));
     }
@@ -39,8 +37,8 @@ public class TestMapsApi {
     @Test(priority = 2)
     public void getPlace() throws IOException {
         basePath = "/maps/api/place/get/json";
-        MapsAddPlace mapsAddPlace = new MapsAddPlace();
-        mapsAddPlace.getPlaceFromMaps();
+        MapsApi mapsApi = new MapsApi();
+        mapsApi.getPlaceFromMaps();
 
         Assert.assertEquals(whatIsTheValue("Latitude"), getData("maps.addplace.lat"));
         Assert.assertEquals(whatIsTheValue("Longitude"), getData("maps.addplace.lng"));
@@ -52,6 +50,11 @@ public class TestMapsApi {
                 + "," + getData("maps.addplace.type3")
                 + "," + getData("maps.addplace.type4"));
         Assert.assertEquals(whatIsTheValue("Website"), getData("maps.addplace.website"));
+    }
+
+    @AfterClass
+    public void revertDetails() throws IOException {
+        baseURI="";
     }
 
     @Description("Closing Activities")

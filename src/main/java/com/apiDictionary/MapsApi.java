@@ -9,7 +9,7 @@ import static com.apiPojoToJsonMapping.PojoToJsonMapping.addPlacePojoToJson;
 import static com.general.Utils.getData;
 import static io.restassured.RestAssured.*;
 
-public class MapsAddPlace {
+public class MapsApi {
 
     @Step("API Dictionary : Add Place To Maps")
     public void addPlaceToMaps() throws IOException {
@@ -26,8 +26,8 @@ public class MapsAddPlace {
 
         System.out.println(addPlaceResponse);
 
-        rememberJsonValueAsString(addPlaceResponse, "PlaceID", "place_id");
-        rememberJsonValueAsString(addPlaceResponse, "Status", "status");
+        rememberJsonValueAsString(addPlaceResponse, "PlaceID", getData("maps.addplace.jsonpath.placeid"));
+        rememberJsonValueAsString(addPlaceResponse, "Status", getData("maps.addplace.jsonpath.status"));
 
     }
 
