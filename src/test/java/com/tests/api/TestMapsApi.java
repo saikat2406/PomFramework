@@ -3,6 +3,7 @@ package com.tests.api;
 import com.apiDictionary.MapsAddPlace;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
@@ -25,14 +26,32 @@ public class TestMapsApi {
     }
 
     @Step("Test Maps API : Add New Place")
-    @Test
+    @Test(priority = 1)
     public void addPlace() throws IOException {
-
         basePath=getData("maps.addplace.basepath");
 
         MapsAddPlace mapsAddPlace = new MapsAddPlace();
         mapsAddPlace.addPlaceToMaps();
 
+        Assert.assertEquals(whatIsTheValue("Status"), getData("maps.addplace.statusvalue"));
+    }
+
+    @Test(priority = 2)
+    public void getPlace() throws IOException {
+        basePath = "/maps/api/place/get/json";
+        MapsAddPlace mapsAddPlace = new MapsAddPlace();
+        mapsAddPlace.getPlaceFromMaps();
+
+        Assert.assertEquals(whatIsTheValue("Latitude"), getData("maps.addplace.lat"));
+        Assert.assertEquals(whatIsTheValue("Longitude"), getData("maps.addplace.lng"));
+        Assert.assertEquals(whatIsTheValue("Accuracy"), getData("maps.addplace.accuracy"));
+        Assert.assertEquals(whatIsTheValue("PhoneNumber"), getData("maps.addplace.phone_number"));
+        Assert.assertEquals(whatIsTheValue("Address"), getData("maps.addplace.address"));
+        Assert.assertEquals(whatIsTheValue("Types"), getData("maps.addplace.type1")
+                + "," + getData("maps.addplace.type2")
+                + "," + getData("maps.addplace.type3")
+                + "," + getData("maps.addplace.type4"));
+        Assert.assertEquals(whatIsTheValue("Website"), getData("maps.addplace.website"));
     }
 
     @Description("Closing Activities")
