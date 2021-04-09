@@ -1,5 +1,6 @@
 package com.apiPojoToJsonMapping;
 
+import com.apiPojo.JiraPojo.*;
 import com.apiPojo.TestMapsApiPojo.AddPlaceBase;
 import com.apiPojo.TestMapsApiPojo.AddPlaceLocation;
 import io.qameta.allure.Step;
@@ -36,6 +37,38 @@ public class PojoToJsonMapping {
         addPlaceBase.setLanguage(getData("maps.addplace.language"));
 
         return addPlaceBase;
+
+    }
+
+    @Step("Converting Pojo to Json Payload")
+    public static Object createJiraPojoToJson() throws IOException {
+
+        CreateJiraBase createJiraBase = new CreateJiraBase();
+        Fields createJiraFields = new Fields();
+        Project createJiraProject = new Project();
+        IssueType createJiraIssueType = new IssueType();
+        Assignee createJiraAssignee = new Assignee();
+        Reporter createJiraReporter = new Reporter();
+
+        List<String> listOfLabels = new ArrayList<>();
+        listOfLabels.add(getData("jira.create.label1"));
+        listOfLabels.add(getData("jira.create.label2"));
+
+        createJiraProject.setKey(getData("jira.create.project.key"));
+        createJiraIssueType.setName(getData("jira.create.issuetype.name"));
+        createJiraAssignee.setId(getData("jira.create.assignee.id"));
+        createJiraReporter.setId(getData("jira.create.reporter.id"));
+
+        createJiraFields.setProject(createJiraProject);
+        createJiraFields.setSummary(getData("jira.create.summary"));
+        createJiraFields.setIssuetype(createJiraIssueType);
+        createJiraFields.setAssignee(createJiraAssignee);
+        createJiraFields.setReporter(createJiraReporter);
+        createJiraFields.setDescription(getData("jira.create.description"));
+
+        createJiraBase.setFields(createJiraFields);
+
+        return createJiraBase;
 
     }
 

@@ -1,7 +1,6 @@
 package com.apiDictionary;
 
 import io.qameta.allure.Step;
-import io.restassured.path.json.JsonPath;
 import java.io.IOException;
 import static com.general.Utils.*;
 

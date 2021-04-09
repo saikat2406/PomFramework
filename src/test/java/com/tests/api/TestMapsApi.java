@@ -36,7 +36,7 @@ public class TestMapsApi {
 
     @Test(priority = 2)
     public void getPlace() throws IOException {
-        basePath = "/maps/api/place/get/json";
+        basePath = getData("maps.getplace.basepath");
         MapsApi mapsApi = new MapsApi();
         mapsApi.getPlaceFromMaps();
 
