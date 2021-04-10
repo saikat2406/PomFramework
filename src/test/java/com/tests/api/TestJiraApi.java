@@ -1,6 +1,7 @@
 package com.tests.api;
 
 import com.apiDictionary.JiraApi;
+import com.engine.ApiTestCase;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.testng.Assert;
@@ -12,7 +13,7 @@ import static com.general.Utils.*;
 import static com.general.Utils.getData;
 import static io.restassured.RestAssured.*;
 
-public class TestJiraApi {
+public class TestJiraApi implements ApiTestCase {
 
     @Description("Setting Up Prerequisites")
     @BeforeTest(description = "Setup Functionality")
@@ -48,7 +49,7 @@ public class TestJiraApi {
     }
 
     @AfterClass
-    public void revertDetails() throws IOException {
+    public void resetUri() throws IOException {
         reset();
     }
 

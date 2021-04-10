@@ -4,13 +4,14 @@ import com.dictionary.basePageObjects.SampleFormsPage;
 import com.dictionary.basePageObjects.HomePage;
 import static com.general.Utils.*;
 import com.engine.DriverManager;
+import com.engine.UiTestCase;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.io.IOException;
 
-public class MyContactForm extends DriverManager {
+public class MyContactForm extends DriverManager implements UiTestCase {
 
     @Description("Setting Up Prerequisites")
     @BeforeTest(description = "Setup Functionality")
