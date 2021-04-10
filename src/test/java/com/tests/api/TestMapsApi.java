@@ -1,6 +1,7 @@
 package com.tests.api;
 
 import com.apiDictionary.MapsApi;
+import com.engine.ApiTestCase;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.testng.Assert;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import static io.restassured.RestAssured.*;
 import static com.general.Utils.*;
 
-public class TestMapsApi {
+public class TestMapsApi implements ApiTestCase {
 
     @Description("Setting Up Prerequisites")
     @BeforeTest(description = "Setup Functionality")
@@ -53,7 +54,7 @@ public class TestMapsApi {
     }
 
     @AfterClass
-    public void revertDetails() throws IOException {
+    public void resetUri() throws IOException {
         reset();
     }
 
