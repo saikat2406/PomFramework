@@ -10,8 +10,7 @@ import java.io.IOException;
 
 import static com.general.Utils.*;
 import static com.general.Utils.getData;
-import static io.restassured.RestAssured.basePath;
-import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.*;
 
 public class TestJiraApi {
 
@@ -50,7 +49,7 @@ public class TestJiraApi {
 
     @AfterClass
     public void revertDetails() throws IOException {
-        baseURI="";
+        reset();
     }
 
     @Description("Closing Activities")

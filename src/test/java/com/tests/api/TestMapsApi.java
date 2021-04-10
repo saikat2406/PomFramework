@@ -54,7 +54,7 @@ public class TestMapsApi {
 
     @AfterClass
     public void revertDetails() throws IOException {
-        baseURI="";
+        reset();
     }
 
     @Description("Closing Activities")
