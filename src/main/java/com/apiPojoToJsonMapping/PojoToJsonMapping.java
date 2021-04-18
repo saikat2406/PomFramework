@@ -65,6 +65,7 @@ public class PojoToJsonMapping {
         createJiraFields.setAssignee(createJiraAssignee);
         createJiraFields.setReporter(createJiraReporter);
         createJiraFields.setDescription(getData("jira.create.description"));
+        createJiraFields.setLabels(listOfLabels);
 
         createJiraBase.setFields(createJiraFields);
 
