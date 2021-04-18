@@ -1,5 +1,6 @@
 package com.general;
 
+import io.restassured.path.json.JsonPath;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -45,6 +47,20 @@ public class Utils {
         String selectedBrowser = envProp.getProperty("browser").trim();
         environmentMap.put("Environment", selectedEnv);
         environmentMap.put("Browser", selectedBrowser);
+    }
+
+    public static void rememberJsonValueAsString(String jsonResponse, String key, String path){
+        JsonPath jsonPath = new JsonPath(jsonResponse);
+        rememberTheValue(key, jsonPath.getString(path));
+    }
+
+    public static String encodedAuthToken(String email, String apiToken){
+        String encodedString = Base64.getEncoder().encodeToString((email + ":" + apiToken).getBytes());
+        return encodedString;
+    }
+
+    public static String cleanBasePath(String basePath, String cleanValue){
+        return basePath.replaceAll("%.*%", cleanValue);
     }
 
 }

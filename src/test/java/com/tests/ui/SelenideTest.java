@@ -1,4 +1,4 @@
-package com.tests;
+package com.tests.ui;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
